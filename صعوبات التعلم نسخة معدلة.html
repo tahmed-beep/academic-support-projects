@@ -1,0 +1,529 @@
+<!-- Chosen Palette: Professional Spectrum (#003f5c, #7a5195, #bc5090, #ef5675, #ff764a, #ffa600, #374c80) -->
+<!-- Application Structure Plan: A single-page, scrolling application divided into thematic sections. It starts with a definition, then presents each learning difficulty in a separate card within a grid for easy comparison. A flowchart visualizes the support process, followed by a section on IEPs. This structure was chosen to guide the user from general concepts to specific details and practical steps, making the information highly scannable and user-friendly for educators and parents. -->
+<!-- Visualization & Content Choices: 
+- Report Info: The steps in the student support process. Goal: Organize. Viz: HTML/CSS Flowchart. Interaction: None, static view. Justification: Clearly shows the sequence of actions from diagnosis to intervention. Method: Styled HTML divs with Tailwind.
+- Report Info: Components of an IEP. Goal: Inform/Show Proportion. Viz: Conceptual Donut Chart. Interaction: Hover for tooltips. Justification: Provides a quick visual summary of the key elements of a support plan. Library: Chart.js (Canvas).
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل صعوبات التعلم التفاعلي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 250px;
+            }
+        }
+        .flowchart-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            min-height: 100px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .flowchart-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #7a5195;
+            transform: rotate(90deg);
+        }
+        @media (min-width: 768px) {
+             .flowchart-arrow {
+                transform: rotate(0deg);
+            }
+        }
+        .list-icon {
+            color: #003f5c;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#003f5c] mb-2">دليل صعوبات التعلم</h1>
+            <p class="text-lg md:text-xl text-[#7a5195]">فهم، تشخيص، ودعم الطلاب نحو النجاح</p>
+        </header>
+
+        <section class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-6">ما هي صعوبات التعلم؟</h2>
+                <p class="text-center text-lg mb-8">صعوبات التعلم ليست نقصًا في الذكاء، بل هي اضطرابات نمائية عصبية تؤثر على كيفية استقبال الدماغ للمعلومات ومعالجتها. التشخيص المبكر والدعم المناسب هما مفتاح تمكين الطالب من تحقيق إمكاناته الكاملة.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+                    <div class="border-2 border-[#ff764a] border-dashed rounded-lg p-6">
+                        <h3 class="text-2xl font-bold text-[#003f5c] mb-3">صعوبات التعلم</h3>
+                        <p>اضطراب داخلي في عمليات المعالجة العصبية للدماغ.</p>
+                    </div>
+                    <div class="border-2 border-[#7a5195] border-dashed rounded-lg p-6">
+                        <h3 class="text-2xl font-bold text-[#003f5c] mb-3">التأخر الدراسي</h3>
+                        <p>قد يكون نتيجة عوامل خارجية مثل ضعف التدريس أو مشاكل أسرية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#003f5c] mb-10">أبرز صور صعوبات التعلم</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dyslexia Card -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-center text-[#bc5090] mb-4">عسر القراءة (Dyslexia)</h3>
+                    <p class="text-center mb-4 text-sm">صعوبة في ربط الحروف بأصواتها وفهم النصوص المقروءة.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 items-center">
+                        <div>
+                             <p class="text-center mt-4 text-xs text-gray-500 mb-6">يعاني الطالب من تحديات متوسطة في فهم المقروء وسرعة القراءة، بينما تكون مشكلة تمييز الحروف هي التحدي الأكبر الذي يؤثر على قدرته على الفهم والاستيعاب.</p>
+                            <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                     <h4 class="font-bold text-[#bc5090] mb-2">المظاهر</h4>
+                                     <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">●</span> صعوبة تمييز الحروف والأصوات</li>
+                                        <li class="flex"><span class="list-icon">●</span> بطء وتقطع في القراءة</li>
+                                        <li class="flex"><span class="list-icon">●</span> ضعف الفهم القرائي</li>
+                                     </ul>
+                                </div>
+                                 <div>
+                                    <h4 class="font-bold text-[#bc5090] mb-2">طرق التشخيص والتدخل</h4>
+                                    <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">✓</span> **التشخيص:** ملاحظة أخطاء القراءة ومناقشة فهمه للنص.</li>
+                                        <li class="flex"><span class="list-icon">✓</span> **التدخل:** التدريب الصوتي، القراءة الموجهة، وتقسيم النصوص.</li>
+                                    </ul>
+                                 </div>
+                            </div>
+                        </div>
+                         <div class="chart-container">
+                            <canvas id="dyslexiaChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dysgraphia Card -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-center text-[#ef5675] mb-4">عسر الكتابة (Dysgraphia)</h3>
+                    <p class="text-center mb-4 text-sm">صعوبة في تنظيم الأفكار كتابيًا مع خط غير واضح وأخطاء إملائية.</p>
+                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 items-center">
+                         <div>
+                            <p class="text-center mt-4 text-xs text-gray-500 mb-6">المشكلة الكبرى هنا هي **الخط غير المنظم** و **الأخطاء الإملائية المتكررة**، بينما يمثل تنظيم الأفكار تحديًا أقل. قد يكون مسك القلم سهلاً، لكن تطبيقه في الكتابة المتصلة صعبًا.</p>
+                             <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                     <h4 class="font-bold text-[#ef5675] mb-2">المظاهر</h4>
+                                     <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">●</span> خط غير منظم وصعوبة مسك القلم</li>
+                                        <li class="flex"><span class="list-icon">●</span> أخطاء إملائية متكررة</li>
+                                        <li class="flex"><span class="list-icon">●</span> ضعف تنظيم الأفكار كتابةً</li>
+                                     </ul>
+                                </div>
+                                 <div>
+                                    <h4 class="font-bold text-[#ef5675] mb-2">طرق التشخيص والتدخل</h4>
+                                    <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">✓</span> **التشخيص:** ملاحظة النسخ والإملاء والكتابة الحرة.</li>
+                                        <li class="flex"><span class="list-icon">✓</span> **التدخل:** تدريبات حركية، التركيز على الأفكار، استخدام الحاسوب.</li>
+                                    </ul>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="dysgraphiaChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dyscalculia Card -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-center text-[#ff764a] mb-4">عسر الحساب (Dyscalculia)</h3>
+                    <p class="text-center mb-4 text-sm">صعوبة في فهم المفاهيم العددية وإجراء العمليات الحسابية الأساسية.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 items-center">
+                        <div>
+                             <p class="text-center mt-4 text-xs text-gray-500 mb-6">يواجه الطالب صعوبة كبيرة في **فهم الأعداد** والرموز، بينما قد تكون قدرته على الحساب الذهني أفضل. المشكلة الأساسية تكمن في ضعف المنطق الرياضي والقدرة على حل المسائل النصية.</p>
+                            <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                     <h4 class="font-bold text-[#ff764a] mb-2">المظاهر</h4>
+                                     <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">●</span> صعوبة فهم الأعداد والرموز</li>
+                                        <li class="flex"><span class="list-icon">●</span> ضعف في العمليات الحسابية البسيطة</li>
+                                        <li class="flex"><span class="list-icon">●</span> عجز عن حل المسائل النصية</li>
+                                     </ul>
+                                </div>
+                                 <div>
+                                    <h4 class="font-bold text-[#ff764a] mb-2">طرق التشخيص والتدخل</h4>
+                                    <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">✓</span> **التشخيص:** اختبارات العد والعمليات البسيطة والمسائل اللفظية.</li>
+                                        <li class="flex"><span class="list-icon">✓</span> **التدخل:** استخدام أدوات ملموسة، ربط الرياضيات بالحياة، التدرج.</li>
+                                    </ul>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="dyscalculiaChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Language Card -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-center text-[#ffa600] mb-4">الصعوبات اللغوية</h3>
+                    <p class="text-center mb-4 text-sm">ضعف في تكوين الجمل واستخدام المفردات بشكل صحيح.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 items-center">
+                        <div>
+                             <p class="text-center mt-4 text-xs text-gray-500 mb-6">المشكلة الكبرى هنا تكمن في **تركيب الجمل** و **التواصل غير اللفظي**. قد تكون المفردات وفهم الأزمنة تحديًا متوسطًا، لكن الفهم السماعي هو أصعب الجوانب التي تواجه الطالب.</p>
+                            <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                     <h4 class="font-bold text-[#ffa600] mb-2">المظاهر</h4>
+                                     <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">●</span> ضعف في المفردات وتركيب الجمل</li>
+                                        <li class="flex"><span class="list-icon">●</span> خلط في استخدام الأزمنة</li>
+                                        <li class="flex"><span class="list-icon">●</span> ضعف الفهم السماعي</li>
+                                     </ul>
+                                </div>
+                                 <div>
+                                    <h4 class="font-bold text-[#ffa600] mb-2">طرق التشخيص والتدخل</h4>
+                                    <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">✓</span> **التشخيص:** وصف الصور، تكوين الجمل، اختبارات الفهم السماعي.</li>
+                                        <li class="flex"><span class="list-icon">✓</span> **التدخل:** إثراء المفردات، الحوار، البدء بالجمل القصيرة.</li>
+                                    </ul>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="languageChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attention & Focus Card -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-center text-[#7a5195] mb-4">صعوبات الانتباه والتركيز</h3>
+                    <p class="text-center mb-4 text-sm">تشتت سريع، وصعوبة في إكمال المهام الموكلة إليه.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 items-center">
+                        <div>
+                             <p class="text-center mt-4 text-xs text-gray-500 mb-6">تظهر الصعوبة بشكل كبير في **التركيز المستمر** و **إكمال المهام**. أما الذاكرة العاملة فهي تحدٍ متوسط، ويواجه الطالب صعوبة كبيرة في مقاومة التشتت والتفكير الإبداعي.</p>
+                            <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                     <h4 class="font-bold text-[#7a5195] mb-2">المظاهر</h4>
+                                     <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">●</span> تشتت سريع وعدم إكمال المهام</li>
+                                        <li class="flex"><span class="list-icon">●</span> نسيان متكرر للتعليمات</li>
+                                        <li class="flex"><span class="list-icon">●</span> فرط حركة أو شرود ذهني</li>
+                                     </ul>
+                                </div>
+                                 <div>
+                                    <h4 class="font-bold text-[#7a5195] mb-2">طرق التشخيص والتدخل</h4>
+                                    <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">✓</span> **التشخيص:** ملاحظة سلوكه أثناء تنفيذ المهام والتعليمات.</li>
+                                        <li class="flex"><span class="list-icon">✓</span> **التدخل:** تقسيم الدروس، الألعاب التعليمية، التعزيز الفوري.</li>
+                                    </ul>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="attentionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Difficulties Card -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-center text-[#374c80] mb-4">الصعوبات الاجتماعية</h3>
+                    <p class="text-center mb-4 text-sm">تدني تقدير الذات، والانسحاب الاجتماعي بسبب الإحباط المتكرر.</p>
+                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 items-center">
+                         <div>
+                             <p class="text-center mt-4 text-xs text-gray-500 mb-6">يواجه الطالب تحديًا كبيرًا في **تكوين الصداقات** و **المشاركة الصفية**. بينما يمثل تدني تقدير الذات وإدارة القلق تحديًا متوسطًا، ويعد التعاطف صعوبة كبيرة تؤثر على قدرته على التفاعل الاجتماعي.</p>
+                            <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                     <h4 class="font-bold text-[#374c80] mb-2">المظاهر</h4>
+                                     <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">●</span> تدني تقدير الذات والانسحاب</li>
+                                        <li class="flex"><span class="list-icon">●</span> قلق شديد في المواقف الاجتماعية</li>
+                                        <li class="flex"><span class="list-icon">●</span> صعوبة تكوين الصداقات</li>
+                                     </ul>
+                                </div>
+                                 <div>
+                                    <h4 class="font-bold text-[#374c80] mb-2">طرق التشخيص والتدخل</h4>
+                                    <ul class="space-y-1 text-sm">
+                                        <li class="flex"><span class="list-icon">✓</span> **التشخيص:** ملاحظة تفاعله مع زملائه ورصد مشاعره.</li>
+                                        <li class="flex"><span class="list-icon">✓</span> **التدخل:** التشجيع، الأنشطة الجماعية، خلق بيئة آمنة.</li>
+                                    </ul>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="socialChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="mb-16">
+             <h2 class="text-3xl md:text-4xl font-bold text-center text-[#003f5c] mb-10">رحلة الدعم: من التشخيص إلى التدخل</h2>
+             <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                 <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+                     <div class="flowchart-step bg-[#003f5c]">
+                         <p><strong>الخطوة 1:</strong> الملاحظة والتشخيص العملي</p>
+                     </div>
+                     <div class="flowchart-arrow">➜</div>
+                     <div class="flowchart-step bg-[#7a5195]">
+                         <p><strong>الخطوة 2:</strong> تحديد نقاط القوة والضعف</p>
+                     </div>
+                     <div class="flowchart-arrow">➜</div>
+                     <div class="flowchart-step bg-[#bc5090]">
+                         <p><strong>الخطوة 3:</strong> بناء خطة دعم فردية (IEP)</p>
+                     </div>
+                 </div>
+                 <div class="flex justify-center my-4 md:hidden">
+                     <div class="flowchart-arrow" style="transform: rotate(90deg);">➜</div>
+                 </div>
+                 <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center md:mt-8">
+                     <div class="md:col-start-1 md:col-span-1"></div>
+                      <div class="flowchart-step bg-[#ff764a]">
+                         <p><strong>الخطوة 5:</strong> المتابعة الدورية وتعديل الخطة</p>
+                     </div>
+                     <div class="flowchart-arrow">➜</div>
+                      <div class="flowchart-step bg-[#ef5675]">
+                         <p><strong>الخطوة 4:</strong> تطبيق استراتيجيات التدخل</p>
+                     </div>
+                 </div>
+             </div>
+        </section>
+        
+        <section class="mb-16">
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <div class="text-center md:text-right">
+                    <h2 class="text-3xl font-bold text-[#003f5c] mb-4">خطة الدعم الفردية (IEP)</h2>
+                    <p class="mb-4">هي خارطة طريق مخصصة لنجاح الطالب. لا تركز الخطة على نقاط الضعف فحسب، بل تستثمر نقاط القوة لديه لبناء ثقته بنفسه وتجاوز التحديات الأكاديمية.</p>
+                    <ul class="space-y-2 text-right inline-block">
+                        <li class="flex items-center justify-end"><span class="ml-2">تحديد نقاط القوة والضعف</span><span class="text-xl text-[#003f5c]">✓</span></li>
+                        <li class="flex items-center justify-end"><span class="ml-2">وضع أهداف واقعية وقابلة للقياس</span><span class="text-xl text-[#7a5195]">✓</span></li>
+                        <li class="flex items-center justify-end"><span class="ml-2">اختيار استراتيجيات متعددة الحواس</span><span class="text-xl text-[#bc5090]">✓</span></li>
+                        <li class="flex items-center justify-end"><span class="ml-2">إشراك الأسرة في الخطة</span><span class="text-xl text-[#ef5675]">✓</span></li>
+                        <li class="flex items-center justify-end"><span class="ml-2">متابعة تقدم الطالب بشكل دوري</span><span class="text-xl text-[#ff764a]">✓</span></li>
+                    </ul>
+                </div>
+                <div class="chart-container">
+                    <canvas id="iepChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center pt-8 border-t border-gray-300">
+            <h3 class="text-2xl font-bold text-[#003f5c] mb-4">رسالة أخيرة</h3>
+            <p class="max-w-3xl mx-auto text-lg">صعوبات التعلم ليست عيبًا في الطالب، بل تحديًا يتطلب أسلوبًا خاصًا. المعلم هو خط الدفاع الأول، وملاحظته الدقيقة قادرة على تغيير مسار حياة الطالب نحو الأفضل.</p>
+            <p class="mt-4 text-md text-gray-600">مع تحيات القسم الفني، د. تامر مدين. رئيس قسم اللغة العربية. القسم المباشر</p>
+        </footer>
+    </div>
+
+    <script>
+        // Common configuration for all bar charts
+        const commonBarChartOptions = {
+            indexAxis: 'y', // Makes it a horizontal bar chart
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (tooltipItem) => {
+                            return `مستوى الصعوبة: ${tooltipItem.raw}`;
+                        }
+                    },
+                    titleFont: { family: 'Tajawal' },
+                    bodyFont: { family: 'Tajawal' }
+                },
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    max: 5,
+                    ticks: {
+                        stepSize: 1,
+                        font: { family: 'Tajawal' }
+                    },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { font: { family: 'Tajawal' } },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        // Dyslexia Chart
+        new Chart(document.getElementById('dyslexiaChart'), {
+            type: 'bar',
+            data: {
+                labels: ['الطلاقة اللفظية', 'تمييز الحروف', 'فهم المقروء', 'القراءة السريعة'],
+                datasets: [{
+                    label: 'مستوى الصعوبة',
+                    data: [3, 5, 3, 4],
+                    backgroundColor: ['#bc5090', '#bc5090', '#bc5090', '#bc5090'],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: commonBarChartOptions
+        });
+
+        // Dysgraphia Chart
+        new Chart(document.getElementById('dysgraphiaChart'), {
+            type: 'bar',
+            data: {
+                labels: ['مسك القلم', 'تنظيم الأفكار', 'الأخطاء الإملائية', 'نظافة الخط'],
+                datasets: [{
+                    label: 'مستوى الصعوبة',
+                    data: [2, 3, 5, 5],
+                    backgroundColor: ['#ef5675', '#ef5675', '#ef5675', '#ef5675'],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: commonBarChartOptions
+        });
+        
+        // Dyscalculia Chart
+        new Chart(document.getElementById('dyscalculiaChart'), {
+            type: 'bar',
+            data: {
+                labels: ['حل المسائل', 'المنطق الرياضي', 'الحساب الذهني', 'فهم الأعداد'],
+                datasets: [{
+                    label: 'مستوى الصعوبة',
+                    data: [5, 4, 3, 5],
+                    backgroundColor: ['#ff764a', '#ff764a', '#ff764a', '#ff764a'],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: commonBarChartOptions
+        });
+
+        // Language Chart
+        new Chart(document.getElementById('languageChart'), {
+            type: 'bar',
+            data: {
+                labels: ['الفهم السماعي', 'التواصل غير اللفظي', 'تركيب الجمل', 'المفردات'],
+                datasets: [{
+                    label: 'مستوى الصعوبة',
+                    data: [5, 5, 5, 3],
+                    backgroundColor: ['#ffa600', '#ffa600', '#ffa600', '#ffa600'],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: commonBarChartOptions
+        });
+        
+        // Attention Chart
+        new Chart(document.getElementById('attentionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['التفكير الإبداعي', 'مقاومة التشتت', 'الذاكرة العاملة', 'التركيز المستمر'],
+                datasets: [{
+                    label: 'مستوى الصعوبة',
+                    data: [4, 5, 3, 5],
+                    backgroundColor: ['#7a5195', '#7a5195', '#7a5195', '#7a5195'],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: commonBarChartOptions
+        });
+
+        // Social Chart
+        new Chart(document.getElementById('socialChart'), {
+            type: 'bar',
+            data: {
+                labels: ['التعاطف', 'تكوين الصداقات', 'إدارة القلق', 'تدني تقدير الذات'],
+                datasets: [{
+                    label: 'مستوى الصعوبة',
+                    data: [5, 5, 3, 3],
+                    backgroundColor: ['#374c80', '#374c80', '#374c80', '#374c80'],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: commonBarChartOptions
+        });
+        
+        // IEP Doughnut Chart
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: { title: tooltipTitleCallback },
+                    bodyFont: { family: 'Tajawal' },
+                    titleFont: { family: 'Tajawal' }
+                },
+                legend: {
+                    display: false
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('iepChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['تحديد الأهداف', 'استراتيجيات التدريس', 'دور الأسرة', 'تقييم ومتابعة', 'استثمار نقاط القوة'],
+                datasets: [{
+                    label: 'مكونات الخطة',
+                    data: [25, 30, 15, 20, 10],
+                    backgroundColor: ['#003f5c', '#7a5195', '#ef5675', '#ff764a', '#ffa600'],
+                    borderColor: '#fff',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                 plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                           font: { family: 'Tajawal', size: 12 },
+                           boxWidth: 20,
+                           padding: 20
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
