@@ -1,0 +1,176 @@
+<!-- Chosen Palette: Calm & Authoritative (#0f172a, #1e293b, #475569, #f8fafc, #38bdf8) -->
+<!-- Application Structure Plan: A single-page, scrolling application designed to introduce the academic support program. The structure flows logically from a high-level introduction (Hero Section) to the core components (The Two Axes), followed by a detailed breakdown of the 21 topics in the Academic Axis presented as a scannable grid. The Applied Axis is then explained in its own dedicated section, followed by a concluding footer. This thematic, top-down structure was chosen to make the comprehensive plan easy to digest for busy teachers. -->
+<!-- Visualization & Content Choices: 
+- Report Info: The 21 topics of the Academic Axis. Goal: Organize/Inform. Viz: A numbered grid of cards. Interaction: Subtle hover effects. Justification: A grid is more scannable and space-efficient than a simple list, allowing teachers to see the entire scope of the program at a glance. Method: Styled HTML divs with Tailwind CSS.
+- Report Info: The two main program axes (Academic & Applied). Goal: Compare/Organize. Viz: Two side-by-side comparison cards. Interaction: None. Justification: This layout provides a clear, high-level distinction between the theoretical and practical components of the program. Method: Styled HTML divs with Tailwind CSS.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطة عمل برنامج الدعم الأكاديمي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #38bdf8, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #475569;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.1), 0 4px 6px -2px rgba(56, 189, 248, 0.05);
+        }
+        .timeline-number {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12 md:my-20">
+            <h1 class="text-4xl md:text-6xl font-black mb-4">برنامج الدعم الأكاديمي</h1>
+            <p class="text-lg md:text-2xl text-slate-300 max-w-3xl mx-auto">مساحة للتعاون، التعلم، وتبادل الخبرات لتعزيز مهاراتنا التدريسية بشكل مستمر.</p>
+        </header>
+
+        <section id="pillars" class="mb-16 md:mb-24">
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="card rounded-2xl p-8">
+                    <h2 class="text-3xl font-bold mb-4 gradient-text">المحور الأكاديمي</h2>
+                    <p class="text-slate-300">يمثل الجانب المعرفي والنظري للبرنامج، ويتكون من 21 اجتماعاً دورياً لتغطية أهم الموضوعات في تعليم اللغة العربية للناطقين بغيرها.</p>
+                </div>
+                <div class="card rounded-2xl p-8">
+                    <h2 class="text-3xl font-bold mb-4 gradient-text">المحور التطبيقي</h2>
+                    <p class="text-slate-300">يمثل الجانب العملي والتفاعلي، وهو لقاء مفتوح ومستمر لعرض الوحدات الدراسية وتبادل الخبرات العملية بين الزملاء.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="academic-axis" class="mb-16 md:mb-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">خريطة الطريق: المحور الأكاديمي</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">1</div>
+                    <p>أنواع التمهيد في الدروس اللغوية.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">2</div>
+                    <p>فهم صعوبات تعلم اللغة العربية.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">3</div>
+                    <p>فهم أنماط المتعلمين في فصول العربية.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">4</div>
+                    <p>المهارات الصفية: لغة الجسد.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">5</div>
+                    <p>المهارات الصفية: الصوت والحركة.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">6</div>
+                    <p>تطبيق المنهج التواصلي في الصف.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">7</div>
+                    <p>التخطيط الفعّال للدروس اللغوية.</p>
+                </div>
+                 <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">8</div>
+                    <p>مقدمة في النحو الوظيفي.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">9</div>
+                    <p>تصميم أنشطة تطبيقية في النحو الوظيفي.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">10</div>
+                    <p>دمج المهارات اللغوية: القراءة والاستماع.</p>
+                </div>
+                 <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">11</div>
+                    <p>دمج المهارات اللغوية: الكتابة والمحادثة.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">12</div>
+                    <p>استراتيجيات تدريس المفردات: العرض.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">13</div>
+                    <p>استراتيجيات تدريس المفردات: التدريب.</p>
+                </div>
+                 <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">14</div>
+                    <p>استراتيجيات تدريس المفردات: الربط.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">15</div>
+                    <p>تصميم الأنشطة الصفية التفاعلية.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">16</div>
+                    <p>إدارة الصف: وضع القواعد والروتين.</p>
+                </div>
+                 <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">17</div>
+                    <p>إدارة الصف: استراتيجيات التحفيز.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">18</div>
+                    <p>إدارة الصف: التعامل مع السلوكيات الصعبة.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">19</div>
+                    <p>تفعيل الأنشطة التعاونية (العمل الجماعي).</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">20</div>
+                    <p>تقديم التغذية الراجعة الفعّالة.</p>
+                </div>
+                <div class="card rounded-lg p-5 flex items-start space-x-4 space-x-reverse">
+                    <div class="timeline-number font-bold rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center">21</div>
+                    <p>توظيف الأدوات الرقمية في التدريس.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="applied-axis" class="mb-16 md:mb-24">
+             <div class="max-w-4xl mx-auto card rounded-2xl p-8 text-center">
+                 <h2 class="text-3xl md:text-4xl font-bold mb-6">الاجتماع الثالث: المحور التطبيقي</h2>
+                 <p class="text-lg text-slate-300 mb-6">لقاء مفتوح ومستمر لتطبيق ما نتعلمه. يقوم كل معلم بتحضير وحدة دراسية ويعرضها على الزملاء لتبادل الأفكار والخبرات. هذا المحور هو وسيلتنا للنمو والارتقاء من خلال خبراتنا المشتركة.</p>
+                 <div class="inline-block bg-sky-500 text-slate-900 font-bold rounded-full px-6 py-2">
+                     مستمر ومنفتح على كل أفكار المعلمين
+                 </div>
+            </div>
+        </section>
+
+        <footer class="text-center pt-8 border-t border-slate-700">
+            <p class="text-lg">نحن على ثقة بأن هذا البرنامج سيكون إضافة قيمة لمسيرتنا المهنية.</p>
+            <p class="mt-4 text-md text-slate-400">مع تحيات القسم الأكاديمي، د. تامر مدين، رئيس قسم اللغة العربية، القسم المباشر</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
